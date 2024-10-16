@@ -1,21 +1,11 @@
-/**
- * @typedef {object} ChannelUserProfile
- * @property {number} id
- * @property {string} username
- * @property {string} slug
- * @property {string} profile_pic
- * @property {boolean} is_staff
- * @property {boolean} is_channel_owner
- * @property {boolean} is_moderator
- * @property {object[]} badges
- * @property {string} badges.type
- * @property {string} badges.text
- * @property {boolean} badges.active
- * @property {number} badges.count
- * @property {string} following_since
- * @property {number} subscribed_for
- * @property {null} banned
- */
+import {
+  ban,
+  chat,
+  getChannelUserProfile,
+  getProfile,
+  mod,
+  unmod,
+} from "./api/index.js";
 
 export class Kick {
   #authorizationToken;
@@ -33,21 +23,7 @@ export class Kick {
    * @param {string} message
    */
   async chat(channelId, message) {
-    await fetch(`https://kick.com/api/v2/messages/send/${channelId}`, {
-      headers: {
-        accept: "application/json",
-        "accept-language": "en-US,en;q=0.9",
-        authorization: this.#authorizationToken,
-        "cache-control": "max-age=0",
-        cluster: "v1",
-        "content-type": "application/json",
-      },
-      referrerPolicy: "strict-origin-when-cross-origin",
-      body: `{"content":"${message}","type":"message"}`,
-      method: "POST",
-      mode: "cors",
-      credentials: "include",
-    });
+    return chat(this.#authorizationToken, channelId, message);
   }
 
   async reply(authorizationToken, channelId, originalMessage, message) {
@@ -83,31 +59,12 @@ export class Kick {
   }
 
   /**
-   *
    * @param {string} channel
    * @param {string} username
    * @param {number?} duration
    */
   async ban(channel, username, minutes) {
-    const body = {
-      banned_username: username,
-      duration: minutes ?? 0,
-      permanent: duration === undefined,
-    };
-    await fetch(`https://kick.com/api/v2/channels/${channel}/bans`, {
-      headers: {
-        accept: "application/json",
-        "accept-language": "en-US,en;q=0.9",
-        authorization: this.#authorizationToken,
-        "cache-control": "max-age=0",
-        cluster: "v1",
-        "content-type": "application/json",
-        priority: "u=1, i",
-        "Referrer-Policy": "strict-origin-when-cross-origin",
-      },
-      body: JSON.stringify(body),
-      method: "POST",
-    });
+    return ban(this.#authorizationToken, channel, username, minutes);
   }
 
   /**
@@ -126,67 +83,36 @@ export class Kick {
     }
   }
 
+  /**
+   * @param {string} channel
+   * @param {string} username
+   */
   async mod(channel, username) {
-    await fetch(
-      `https://kick.com/api/internal/v1/channels/${channel}/community/moderators`,
-      {
-        headers: {
-          accept: "application/json",
-          authorization: this.#authorizationToken,
-        },
-        body: {
-          username,
-        },
-        method: "POST",
-      }
-    );
+    mod(this.#authorizationToken, channel, username);
   }
 
+  /**
+   * @param {string} channel
+   * @param {string} username
+   */
   async unmod(channel, username) {
-    await fetch(
-      `https://kick.com/api/internal/v1/channels/${channel}/community/moderators/${username}`,
-      {
-        headers: {
-          accept: "application/json",
-          authorization: this.#authorizationToken,
-        },
-        body: null,
-        method: "DELETE",
-      }
-    );
+    return await unmod(this.#authorizationToken, channel, username);
   }
 
+  /**
+   * @param {string} username
+   */
   async getProfile(username) {
-    const response = await fetch(
-      `https://kick.com/api/v2/channels/${username}`,
-      {
-        body: null,
-        method: "GET",
-      }
-    );
-
-    return await response.json();
+    return getProfile(username);
   }
 
   /**
    * Get the user profile for a specific channel
    * @param {string} channel
    * @param {string} username
-   * @returns {Promise<ChannelUserProfile>}
    */
   async getChannelUserProfile(channel, username) {
-    const response = await fetch(
-      `https://kick.com/api/v2/channels/${channel}/users/${username}`,
-      {
-        headers: {
-          accept: "application/json",
-        },
-        body: null,
-        method: "GET",
-      }
-    );
-
-    return await response.json();
+    return getChannelUserProfile(channel, username);
   }
 
   async isSub(channel, username) {
