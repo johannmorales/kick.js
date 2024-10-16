@@ -1,5 +1,5 @@
 {
-  "name": "kick.js",
+  "name": "@johannmorales/kick.js",
   "version": "0.0.1",
   "description": "An unofficial client for interacting with Kick's API.",
   "type": "module",
