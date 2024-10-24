@@ -6,6 +6,9 @@ import {
   mod,
   unmod,
 } from "./api/index.js";
+import { reply } from "./api/reply.js";
+
+import { joinChatroom } from "./ws/index.js";
 
 export class Kick {
   #authorizationToken;
@@ -18,6 +21,12 @@ export class Kick {
   }
 
   /**
+   * @param {string} chatroomId
+   */
+  async joinChatroom(chatroomId) {
+    return joinChatroom(chatroomId);
+  }
+  /**
    * Send a message in chat using the user's authorization token
    * @param {string} channelId
    * @param {string} message
@@ -26,36 +35,15 @@ export class Kick {
     return chat(this.#authorizationToken, channelId, message);
   }
 
-  async reply(authorizationToken, channelId, originalMessage, message) {
-    const body = {
-      content: message,
-      type: "reply",
-      metadata: {
-        original_message: {
-          id: originalMessage.id,
-          content: originalMessage.content,
-        },
-        original_sender: {
-          id: originalMessage.sender.id,
-          username: originalMessage.sender.username,
-        },
-      },
-    };
-    await fetch(`https://kick.com/api/v2/messages/send/${channelId}`, {
-      headers: {
-        accept: "application/json",
-        "accept-language": "en-US,en;q=0.9",
-        authorization: authorizationToken,
-        "cache-control": "max-age=0",
-        cluster: "v1",
-        "content-type": "application/json",
-      },
-      referrerPolicy: "strict-origin-when-cross-origin",
-      body: JSON.stringify(body),
-      method: "POST",
-      mode: "cors",
-      credentials: "include",
-    });
+  /**
+   *
+   * @param {string} channelId
+   * @param {import("./ws/join-chatroom.js").ChatMessageEvent['data']} originalMessage
+   * @param {string} message
+   * @returns
+   */
+  async reply(channelId, originalMessage, message) {
+    return reply(this.authorizationToken, channelId, originalMessage, message);
   }
 
   /**

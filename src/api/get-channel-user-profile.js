@@ -10,7 +10,7 @@ import { http } from "./_common.js";
  * @property {boolean} is_channel_owner
  * @property {boolean} is_moderator
  * @property {object[]} badges
- * @property {string} badges.type
+ * @property {"subscriber"} badges.type
  * @property {string} badges.text
  * @property {boolean} badges.active
  * @property {number} badges.count
@@ -22,7 +22,7 @@ import { http } from "./_common.js";
 /**
  * @param {string} channel
  * @param {string} username
- * @returns {Promsie<ChannelUserProfile>}
+ * @returns {Promise<ChannelUserProfile>}
  */
 export async function getChannelUserProfile(channel, username) {
   return http(`https://kick.com/api/v2/channels/${channel}/users/${username}`);
