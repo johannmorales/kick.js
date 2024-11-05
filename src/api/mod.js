@@ -1,6 +1,6 @@
-import { http } from "./_common.mjs";
+const { http } = require("./_common.js");
 
-export async function mod(authorizationToken, channel, username) {
+async function mod(authorizationToken, channel, username) {
   await http(
     `https://kick.com/api/internal/v1/channels/${channel}/community/moderators`,
     {
@@ -14,3 +14,5 @@ export async function mod(authorizationToken, channel, username) {
     }
   );
 }
+
+module.exports = { mod };

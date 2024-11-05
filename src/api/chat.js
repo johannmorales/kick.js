@@ -1,6 +1,6 @@
-import { http } from "./_common.mjs";
+const { http } = require("./_common.js");
 
-export async function chat(authorizationToken, channelId, message) {
+async function chat(authorizationToken, channelId, message) {
   await http(`https://kick.com/api/v2/messages/send/${channelId}`, {
     headers: {
       authorization: authorizationToken,
@@ -9,3 +9,5 @@ export async function chat(authorizationToken, channelId, message) {
     method: "POST",
   });
 }
+
+module.exports = { chat };

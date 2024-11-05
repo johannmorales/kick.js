@@ -2,7 +2,7 @@
  * @param {string} url
  * @param {RequestInit?} init
  */
-export async function http(url, init) {
+async function http(url, init) {
   const response = await fetch(url, {
     body: null,
     method: "GET",
@@ -15,3 +15,5 @@ export async function http(url, init) {
   });
   return response.json();
 }
+
+module.exports = { http };

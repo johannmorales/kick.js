@@ -1,5 +1,5 @@
-import { WebSocket } from "ws";
-import { EventEmitter } from "events";
+const { WebSocket } = require("ws");
+const { EventEmitter } = require("events");
 /**
  * @typedef {object} ChatMessageEvent
  * @property {"App\\Events\\ChatMessageEvent"} event
@@ -69,7 +69,7 @@ import { EventEmitter } from "events";
  * @property {string} channel
  */
 
-export const joinChatroom = (chatroomId) => {
+const joinChatroom = (chatroomId) => {
   /**
    * @type {EventEmitter<{message: (message: ChatMessageEvent['data']) =>void}>}
    */
@@ -111,3 +111,5 @@ export const joinChatroom = (chatroomId) => {
 
   return ee;
 };
+
+module.exports = { joinChatroom };

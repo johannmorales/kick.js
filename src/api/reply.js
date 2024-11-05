@@ -1,4 +1,4 @@
-import { http } from "./_common.mjs";
+const { http } = require("./_common.js");
 
 /**
  *
@@ -7,12 +7,7 @@ import { http } from "./_common.mjs";
  * @param {import("../ws/join-chatroom.js").ChatMessageEvent['data']} originalMessage
  * @param {string} message
  */
-export async function reply(
-  authorizationToken,
-  channelId,
-  originalMessage,
-  message
-) {
+async function reply(authorizationToken, channelId, originalMessage, message) {
   const body = {
     content: message,
     type: "reply",
@@ -36,3 +31,5 @@ export async function reply(
     method: "POST",
   });
 }
+
+module.exports = { reply };

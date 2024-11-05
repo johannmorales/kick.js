@@ -2,7 +2,7 @@
   "name": "@johannmorales/kick.js",
   "version": "0.4.0",
   "description": "An unofficial client for interacting with Kick's API.",
-  "main": "src/index.mjs",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

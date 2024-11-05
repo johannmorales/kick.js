@@ -1,4 +1,4 @@
-import { http } from "./_common.mjs";
+const { http } = require("./_common.js");
 
 /**
  * @typedef {object} ChannelUserProfile
@@ -24,6 +24,8 @@ import { http } from "./_common.mjs";
  * @param {string} username
  * @returns {Promise<ChannelUserProfile>}
  */
-export async function getChannelUserProfile(channel, username) {
+async function getChannelUserProfile(channel, username) {
   return http(`https://kick.com/api/v2/channels/${channel}/users/${username}`);
 }
+
+module.exports = { getChannelUserProfile };

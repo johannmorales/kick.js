@@ -1,6 +1,6 @@
-import { http } from "./_common.mjs";
+const { http } = require("./_common.js");
 
-export async function ban(authorizationToken, channel, username) {
+async function ban(authorizationToken, channel, username) {
   const body = {
     banned_username: username,
     duration: minutes ?? 0,
@@ -14,3 +14,5 @@ export async function ban(authorizationToken, channel, username) {
     method: "POST",
   });
 }
+
+module.exports = { ban };

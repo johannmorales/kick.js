@@ -1,6 +1,6 @@
-import { http } from "./_common.mjs";
+const { http } = require("./_common.js");
 
-export async function unmod(authorizationToken, channel, username) {
+async function unmod(authorizationToken, channel, username) {
   await http(
     `https://kick.com/api/internal/v1/channels/${channel}/community/moderators/${username}`,
     {
@@ -11,3 +11,5 @@ export async function unmod(authorizationToken, channel, username) {
     }
   );
 }
+
+module.exports = { unmod };
