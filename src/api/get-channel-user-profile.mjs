@@ -1,4 +1,4 @@
-import { http } from "./_common.js";
+import { http } from "./_common.mjs";
 
 /**
  * @typedef {object} ChannelUserProfile

@@ -1,4 +1,4 @@
-import { http } from "./_common.js";
+import { http } from "./_common.mjs";
 
 export async function chat(authorizationToken, channelId, message) {
   await http(`https://kick.com/api/v2/messages/send/${channelId}`, {

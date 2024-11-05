@@ -5,10 +5,10 @@ import {
   getProfile,
   mod,
   unmod,
-} from "./api/index.js";
-import { reply } from "./api/reply.js";
+} from "./api/index.mjs";
+import { reply } from "./api/reply.mjs";
 
-import { joinChatroom } from "./ws/index.js";
+import { joinChatroom } from "./ws/index.mjs";
 
 export class Kick {
   #authorizationToken;

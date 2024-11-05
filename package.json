@@ -2,10 +2,8 @@
   "name": "@johannmorales/kick.js",
   "version": "0.3.0",
   "description": "An unofficial client for interacting with Kick's API.",
-  "type": "module",
-  "main": "src/kick.js",
+  "main": "src/index.mjs",
   "scripts": {
-    "start": "node src/kick.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
