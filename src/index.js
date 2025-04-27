@@ -4,6 +4,7 @@ const { getChannelUserProfile } = require("./api/get-channel-user-profile.js");
 const { getProfile } = require("./api/get-profile.js");
 const { mod } = require("./api/mod.js");
 const { unmod } = require("./api/unmod.js");
+const { userWatchLivestream } = require("./api/user-watch-livestream.js");
 const { joinChatroom } = require("./ws/join-chatroom.js");
 
 module.exports = {
@@ -14,4 +15,5 @@ module.exports = {
   chat,
   mod,
   joinChatroom,
+  userWatchLivestream,
 };
