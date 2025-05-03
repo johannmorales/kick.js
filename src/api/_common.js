@@ -13,7 +13,8 @@ async function http(url, init) {
         "cache-control": "max-age=0",
         "accept-language": "en-US,en;q=0.9",
         priority: "u=1, i",
-        "sec-ch-ua": '"Not A(Brand";v="8", "Chromium";v="132"',
+        "sec-ch-ua":
+          '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
         "sec-ch-ua-mobile": "?0",
         "sec-ch-ua-platform": '"macOS"',
         "sec-fetch-dest": "empty",
