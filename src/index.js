@@ -19,7 +19,3 @@ module.exports = {
 };
 
 
-userWatchLivestream(
-  "Bearer 207925072|GNDiQKOt7mhvLOxA07ZfUYRycccDeqzGDCRRR7qO",
-  6100370,
-).catch((error) => console.error(error));
