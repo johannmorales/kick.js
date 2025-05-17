@@ -26,12 +26,3 @@ async function userWatchLivestream(authorizationToken, channelId, channelName) {
 }
 
 module.exports = { userWatchLivestream };
-
-
-fetch("https://kick.com/api/v2/user/events", {
-  "headers": {
-
-  },
-  "body": "[{\"name\":\"tracking.user.watch.livestream\",\"channel_id\":21224099}]",
-  "method": "POST"
-});
