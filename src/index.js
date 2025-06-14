@@ -1,13 +1,13 @@
-const { ban } = require("./api/ban.js");
-const { chat } = require("./api/chat.js");
-const { getChannelUserProfile } = require("./api/get-channel-user-profile.js");
-const { getProfile } = require("./api/get-profile.js");
-const { mod } = require("./api/mod.js");
-const { unmod } = require("./api/unmod.js");
-const { userWatchLivestream } = require("./api/user-watch-livestream.js");
-const { joinChatroom } = require("./ws/join-chatroom.js");
+import { ban } from "./api/ban.js";
+import { chat } from "./api/chat.js";
+import { getChannelUserProfile } from "./api/get-channel-user-profile.js";
+import { getProfile } from "./api/get-profile.js";
+import { mod } from "./api/mod.js";
+import { unmod } from "./api/unmod.js";
+import { userWatchLivestream } from "./api/user-watch-livestream.js";
+import { joinChatroom } from "./ws/join-chatroom.js";
 
-module.exports = {
+export {
   getProfile,
   getChannelUserProfile,
   ban,
